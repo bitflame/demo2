@@ -13,6 +13,7 @@ public class CopyConstructor {
     int V;
     int E;
 
+    // Question 4.1.3
     public CopyConstructor(Graph G) {
         this.V = G.V();
         this.E = G.E();
@@ -38,6 +39,15 @@ public class CopyConstructor {
 
     public Iterable<Integer> adj(int i) {
         return adj[i];
+    }
+
+    // Question 4.1.4
+    public boolean hasEdge(int v, int w) {
+        for (int i : this.adj[v]) {
+            if (i == w)
+                return true;
+        }
+        return false;
     }
 
     public String toString() {
@@ -74,5 +84,7 @@ public class CopyConstructor {
         constructor.adj[0].add(0, 4);
         StdOut.println(graph);
         StdOut.println(constructor);
+        StdOut.println("expect true: "+constructor.hasEdge(0, 3));
+        StdOut.println("expect false: "+constructor.hasEdge(1, 3));
     }
 }

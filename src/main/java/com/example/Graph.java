@@ -17,7 +17,12 @@ public class Graph implements GraphInterface {
         }
 
     }
-
+public boolean hasEdge(int v, int w){
+    for (int k : adjacent[v]) {
+        if (k==w) return true;
+    }
+    return false;
+}
     public Graph(In in) {
         this(in.readInt());
         int edges = in.readInt();
