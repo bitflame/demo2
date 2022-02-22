@@ -6,6 +6,22 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Search source: 0",
+            "request": "launch",
+            "mainClass": "com.example.Search",
+            "projectName": "demo",
+            "args": ["TinyG.txt", "0"]
+        },
+        {
+            "type": "java",
+            "name": "Launch Search source: 9",
+            "request": "launch",
+            "mainClass": "com.example.Search",
+            "projectName": "demo",
+            "args": ["tineyG.txt", "9"]
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
@@ -51,7 +67,7 @@
             "request": "launch",
             "mainClass": "com.example.Exercise7",
             "projectName": "demo",
-            "args":"tinyDG.txt"
+            "args": "tinyDG.txt"
         }
     ]
 }
