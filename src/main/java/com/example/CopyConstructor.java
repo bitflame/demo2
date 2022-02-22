@@ -4,14 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.Graph;
 import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
 
 public class CopyConstructor {
     List<Integer>[] adj;
+    int V;
+    int E;
 
     public CopyConstructor(Graph G) {
+        this.V = G.V();
+        this.E = G.E();
+
         adj = new ArrayList[G.V()];
         // for each vertex in v initialize a new bag
         for (int v = 0; v < G.V(); v++) {
@@ -35,24 +40,39 @@ public class CopyConstructor {
         return adj[i];
     }
 
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        s.append(V + " vertices " + E + " edges " + "\n");
+        for (int i = 0; i < V; i++) {
+            s.append(i + ": ");
+            for (int w : adj[i]) {
+                s.append(w + " ");
+            }
+            s.append("\n");
+        }
+        return s.toString();
+    }
+
     public static void main(String[] args) {
-        Graph graph = new Graph(new In("tinyDG.txt"));
+        // Graph graph = new Graph(new In("tinyDG.txt"));
+        Graph graph = new Graph(5);
+        graph.addEdge(0, 1);
+        graph.addEdge(0, 2);
+        graph.addEdge(0, 3);
+        graph.addEdge(1, 2);
+        graph.addEdge(1, 4);
+        graph.addEdge(2, 3);
+
         // build a new Graph
         CopyConstructor constructor = new CopyConstructor(graph);
-        int pre = -1;
-        for (int i = 0; i < graph.V(); i++) {
-            System.out.println("Initial Graph Nodes         Copy of Graph Nodes ");
-            System.out.printf("%d - ", i);
-            for (int j : graph.adj(i)) {
-                if (j != pre)
-                    System.out.printf("%d ", j);
-                pre = j;
-            }
-            System.out.printf("              ");
-            for (int k : constructor.adj(i)) {
-                System.out.printf("%d ", k);
-            }
-            System.out.println();
-        }
+        StdOut.println("Expected:\n" +
+                "0: 3 2 1\n" +
+                "1: 4 2 0\n" +
+                "2: 3 1 0\n" +
+                "3: 2 0\n" +
+                "4: 1\n");
+        constructor.adj[0].add(0, 4);
+        StdOut.println(graph);
+        StdOut.println(constructor);
     }
 }
